@@ -1,9 +1,13 @@
 import React from "react";
 import CartItem from "./CartItem";
 import { connect } from 'react-redux';
-import { CLEAR_CART } from '../actions';
+import { CLEAR_CART, GET_TOTALS } from '../actions';
 
 const CartContainer = ({ cart = [], total, dispatch }) => {
+  React.useEffect(() => {
+    dispatch({ type: GET_TOTALS })
+  })
+
   if (cart.length === 0) {
     return (
       <section className="cart">
@@ -32,7 +36,7 @@ const CartContainer = ({ cart = [], total, dispatch }) => {
         <hr />
         <div className="cart-total">
           <h4>
-            total <span>{total}</span>
+            total <span>${total}</span>
           </h4>
         </div>
         <button 
